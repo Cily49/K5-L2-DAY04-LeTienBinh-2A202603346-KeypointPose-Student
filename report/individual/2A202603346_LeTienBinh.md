@@ -63,24 +63,24 @@ Mã lỗi dùng đúng một trong: `lr_swap`, `vis_flag`, `position`, `missing`
 
 | Ảnh | Người / mặt | Điểm | Mã lỗi | Ghi chú | Đã sửa? |
 |---|---|---|---|---|---|
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| `000000480582.jpg` | Người 1, 2 (quay lưng) | — | `ok` | Hướng quay lưng đúng, `left_*` nằm bên trái ảnh | — |
+| `000000431988.jpg` | Người 1, 2 (quay lưng) | — | `ok` | Trái/phải và cờ đúng | — |
+| `000000309169.jpg` | Người 1–3 (crowd) | — | `ok` | Người 3 đang chạy, chân bắt chéo thật (cảnh báo của script) | — |
+| `000000311497.jpg` | Người 1 | `left_knee`, `right_knee`, `left_ankle`, `right_ankle` | `lr_swap` | Gối và cổ chân trái/phải bị đổi, hai đường chân cắt nhau | Có |
+| `000000188804.jpg` | Người 1 (quay lưng) | `left_ankle`, `right_ankle` | `lr_swap` | Hông trái đúng bên trái ảnh nhưng cổ chân trái lại nằm bên phải ảnh | Có |
+| `face_13874.jpg` | Mặt kính râm | — | `ok` | 8 điểm mắt sau kính râm đều `occluded` | — |
+| `face_223746.jpg` | Mặt nghiêng | — | `ok` | | — |
+| `face_10579.jpg` | Mặt thẳng | — | `ok` | `left_eye_*` nằm bên phải ảnh | — |
 
 Tổng hợp số lỗi theo mã:
 
 | `lr_swap` | `vis_flag` | `position` | `missing` | `extra` | `ok` |
 |---:|---:|---:|---:|---:|---:|
-| | | | | | |
+| 2 | 0 | 0 | 0 | 0 | 6 |
 
 Điểm còn phân vân giữa `v = 1` và `v = 0` (ghi cả hai lựa chọn và lý do chọn):
 
-...
+Xem bảng ca khó ở mục 3 (4 dòng, đã ghi cả hai lựa chọn và lý do).
 
 ## 5. Kiểm file xuất và kết quả tự kiểm (CP4)
 
