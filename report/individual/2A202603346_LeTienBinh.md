@@ -50,9 +50,10 @@ Mỗi điểm bạn phân vân một dòng, nhất là phân vân giữa `v = 1`
 
 | Ảnh | Người / mặt | Điểm | Cờ đã chọn | Phân vân giữa | Lý do chọn |
 |---|---|---|---:|---|---|
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| `000000150192.jpg` | Người 2 (ngồi phía sau, bên trái ảnh) | `right_ankle` | 1 | `v = 1` / `v = 0` | Bị gầm bàn che, nhưng dựa vào vị trí đùi nên xác định được cổ chân nằm ở đâu |
+| `000000150192.jpg` | Người 2 (ngồi phía sau, bên trái ảnh) | `left_hip` | 0 | `v = 1` / `v = 0` | Bị che hoàn toàn, không có căn cứ nào để xác định vị trí |
+| `000000150192.jpg` | Người 1 (áo caro, ngồi trước bàn) | `left_hip`, `right_hip` | 1 | `v = 1` / `v = 0` | Hông bị bàn che, nhưng dựa vào vị trí vai và ngực để suy ra được hông |
+| `000000188804.jpg` | Người 2 (ngồi sau laptop) | `right_shoulder` | 0 | `v = 1` / `v = 0` | Bị vật phía trước che khuất, không xác định được vị trí |
 
 ## 4. Bảng tự review (CP3)
 
