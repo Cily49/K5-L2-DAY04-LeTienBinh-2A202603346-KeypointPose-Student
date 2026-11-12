@@ -6,13 +6,13 @@ Dữ liệu: 12 ảnh người COCO 2017 (Lin et al., 2014) và 8 ảnh khuôn m
 
 - Họ tên: Lê Tiến Bình
 - MSSV: 2A202603346
-- Email: TODO
+- Email: binh04092004@gmail.com
 - Link repository: https://github.com/Cily49/K5-L2-DAY04-LeTienBinh-2A202603346-KeypointPose
 - Phiên bản CVAT (Help → About): 2.82.1
 - Máy: hệ điều hành macOS 26.5.1 · RAM 24 GB · chạy CVAT chế độ đầy đủ
 - Bộ ảnh (`src/exports/assignment.json` do `lab.py setup` tạo): có
-- Giờ bắt đầu: TODO
-- Giờ kết thúc: TODO
+- Giờ bắt đầu: 4:30 ngày 12/11/2026
+- Giờ kết thúc: 12:00 ngày 13/11/2026
 
 ## 1. Kiểm tra label (CP0)
 
@@ -31,18 +31,19 @@ Rê chuột vào đúng một điểm của skeleton rồi bấm `Q` (bật/tắ
 
 | Nhóm ảnh | Số ảnh | Số skeleton đã gán | Số người dưới 60 px (không gán) | Số poster / gương / màn hình bỏ qua | Thời gian (phút) |
 |---|---:|---:|---:|---:|---:|
-| `easy` | 5 | 5 | TODO | TODO | TODO |
-| `occluded` | 3 | 6 | TODO | TODO | TODO |
-| `back` | 2 | 4 | TODO | TODO | TODO |
-| `small` | 1 | 2 | TODO | TODO | TODO |
-| `crowd` | 1 | 3 | TODO | TODO | TODO |
-| `faces` | 8 | 8 | — | TODO | TODO |
+| `easy` | 5 | 5 | 0 | 0 | 25 |
+| `occluded` | 3 | 6 | 0 | 0 | 25 |
+| `back` | 2 | 4 | 1 | 0 | 20 |
+| `small` | 1 | 2 | 1 | 0 | 10 |
+| `crowd` | 1 | 3 | 2 | 0 | 15 |
+| `faces` | 8 | 8 | — | 0 | 30 |
 
-- Số ảnh người đã xong ở mốc phút 105: TODO / 10
-- Thời gian thực tế (phút): CP1 TODO · CP2 TODO · CP3 TODO
+- Số ảnh người đã xong ở mốc phút 105: 8 / 10
+- Thời gian thực tế (phút, ước lượng): CP1 95 · CP2 30 · CP3 20
+- Người dưới 60 px không gán: 1 người ở xa sau con đường (`000000480582.jpg`), 1 người ngồi sau ông áo đỏ (`000000150192.jpg`), 2 người tí hon ở góc trái (`000000309169.jpg`).
 - Ảnh tốn thời gian nhất là ảnh nào, vì sao?
 
-TODO
+`000000309169.jpg` (crowd): có 3 người cần gán, một người ở xa đang chạy nên hai chân bắt chéo, phải kiểm kỹ trái/phải; hai người tí hon ở góc trái phải đo xem có dưới 60 px không.
 
 ## 3. Bảng ca khó (CP1, CP2)
 
@@ -94,7 +95,7 @@ Tự kiểm tay trong file JSON (`annotations/person_keypoints_default.json` tro
 
 Sau khi xuất, CVAT ghi `occluded` thành `v = 1` và `outside` thành `v = 0`. Tọa độ của điểm `outside` trong file là `0, 0` hay tọa độ cũ? Tọa độ cũ (ví dụ `left_elbow` của annotation 16 vẫn là `342.4, 264.4` với `v = 0`). CVAT 2.x xuất như vậy; chuẩn COCO ghi `0, 0`, nhưng điểm `v = 0` không được dùng khi huấn luyện và khi chấm.
 
-Hai job đã chuyển sang completed trên CVAT? TODO (Có / Không)
+Hai job đã chuyển sang completed trên CVAT? Có
 
 Dán phần **TÓM TẮT** in ra từ `src/check_submission.py`:
 
@@ -161,7 +162,7 @@ Nguồn ảnh: COCO 2017.
 
 ## 8. Khó khăn và lỗi kỹ thuật
 
-TODO (nếu không có lỗi kỹ thuật thì ghi "Không có").
+Không có. CVAT chạy ổn định, không bị treo hay mất nhãn.
 
 ## Bonus (nếu làm)
 
@@ -169,9 +170,9 @@ TODO (nếu không có lỗi kỹ thuật thì ghi "Không có").
 
 | Ảnh | Số skeleton | Số người dưới 60 px | Ca khó nhất |
 |---|---:|---:|---|
-| `000000373426.jpg` | 3 | TODO | TODO |
-| `000000465508.jpg` | 3 | TODO | TODO |
-| `000000517702.jpg` | 3 | TODO | TODO |
+| `000000373426.jpg` | 3 | 0 | Cầu thủ bắt bóng ngồi xổm, chồng lên người đánh bóng và trọng tài |
+| `000000465508.jpg` | 3 | 3 | Ảnh đen trắng, hai người đi quay lưng, người trượt ván đang bật nhảy |
+| `000000517702.jpg` | 3 | 0 | Ô che đầu người đàn ông, người phía sau bị cắt mép trên ảnh (nhiều điểm `v = 0`) |
 
 Kết quả `src/check_submission.py` cho `LeTienBinh_bonus_persons.zip` (chạy với `--expected-person-images 3 --expected-face-images 5`):
 
