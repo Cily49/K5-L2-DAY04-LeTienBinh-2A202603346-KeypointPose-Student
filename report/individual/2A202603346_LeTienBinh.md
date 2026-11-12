@@ -9,7 +9,7 @@ Dữ liệu: 12 ảnh người COCO 2017 (Lin et al., 2014) và 8 ảnh khuôn m
 - Email: TODO
 - Link repository: https://github.com/Cily49/K5-L2-DAY04-LeTienBinh-2A202603346-KeypointPose
 - Phiên bản CVAT (Help → About): 2.82.1
-- Máy: hệ điều hành macOS 26.5.1 · RAM 24 GB · chạy CVAT chế độ TODO (đầy đủ / lite)
+- Máy: hệ điều hành macOS 26.5.1 · RAM 24 GB · chạy CVAT chế độ đầy đủ
 - Bộ ảnh (`src/exports/assignment.json` do `lab.py setup` tạo): có
 - Giờ bắt đầu: TODO
 - Giờ kết thúc: TODO
@@ -25,7 +25,7 @@ Mẫu `person` dựng theo người quay mặt về camera (các điểm `left_*
 
 Cách đổi cờ `occluded` / `outside` cho **một điểm** trên phiên bản CVAT này (một câu):
 
-TODO: tự viết theo thao tác bạn đã làm (ví dụ: chuột phải vào đúng một điểm của skeleton → bật Occluded / Outside trong menu của điểm đó, hoặc rê chuột lên điểm rồi bấm phím tắt `Q` / `O`). Kiểm lại trên CVAT 2.82.1 rồi ghi đúng cách bạn dùng.
+Rê chuột vào đúng một điểm của skeleton rồi bấm `Q` (bật/tắt `occluded`, `v = 1`) hoặc `O` (bật/tắt `outside`, `v = 0`), hoặc chuột phải vào điểm đó để mở menu outside · khóa · occluded · hidden; chỉ điểm đó đổi cờ, không dùng `hidden` vì không được lưu khi xuất.
 
 ## 2. Số lượng đã gán và thời gian (CP1, CP2)
 
@@ -117,12 +117,12 @@ Các `[CẢNH BÁO]` còn giữ nguyên và lý do:
 
 | Ảnh | Người | Cặp bị cảnh báo | Kết luận sau khi kiểm lại |
 |---|---|---|---|
-| `000000188804.jpg` | #1 | ankle | TODO: chân bắt chéo thật / đã sửa `lr_swap` |
-| `000000225138.jpg` | #1 | ankle | TODO |
-| `000000308257.jpg` | #1 | ankle | TODO (người ngồi xếp bằng, hai cổ chân bắt chéo thật?) |
-| `000000309169.jpg` | #3 | knee, ankle | TODO |
-| `000000311497.jpg` | #1 | knee, ankle | TODO |
-| `000000343057.jpg` | #1 | knee, ankle | TODO |
+| `000000188804.jpg` | #1 | ankle | Người quay lưng đứng thẳng, hai chân không bắt chéo: nhiều khả năng `lr_swap` cặp cổ chân → sửa trên CVAT |
+| `000000225138.jpg` | #1 | ankle | Hai cổ chân đứng sát nhau, sau giày trượt tuyết: cần kiểm lại; nếu chân trái (bên phải ảnh) đi xuống bên phải thì đây là `lr_swap` cổ chân |
+| `000000308257.jpg` | #1 | ankle | Người ngồi xếp bằng, hai cổ chân bắt chéo thật → giữ nguyên. Cần kiểm thêm vị trí `left_hip` (đang ở ngang eo, cao hơn `right_hip` khoảng 75 px) |
+| `000000309169.jpg` | #3 | knee, ankle | Người chạy ở xa, sải chân: chân sau duỗi ra sau, chân trước co lên, đường chân bắt chéo do tư thế chạy → giữ nguyên nếu kiểm lại đúng hướng |
+| `000000311497.jpg` | #1 | knee, ankle | Người đang bước, hông trái nằm bên phải ảnh nhưng gối và cổ chân trái lại nối sang chân bên trái ảnh: nhiều khả năng `lr_swap` gối + cổ chân → sửa trên CVAT |
+| `000000343057.jpg` | #1 | knee, ankle | Người quay mặt về camera, chân bước lên tuyết không bắt chéo: nhiều khả năng `lr_swap` gối + cổ chân → sửa trên CVAT |
 
 ## 6. Ảnh chụp màn hình
 
@@ -196,7 +196,7 @@ File `LeTienBinh_bonus_faces.zip`: 5 ảnh, mỗi ảnh 1 skeleton `face` 13 đi
 
 Ảnh không màu khó hơn ở điểm nào? Kính râm trên ảnh hồng ngoại có còn là `v = 1` không?
 
-TODO
+Ảnh đen trắng mất tương phản màu giữa môi và da, giữa lòng trắng mắt và mí, nên khó thấy mép mí dưới và khóe miệng; phải phóng to và dựa vào vùng tối/sáng (bóng dưới mí, khe giữa hai môi) thay vì màu. Trong 5 ảnh bonus, chỉ ở `face_317330.jpg` hai mí dưới (`left_eye_lower`, `right_eye_lower`) bị bóng che nên đặt `v = 1`; các điểm còn lại thấy rõ (`v = 2`). Với kính râm trên ảnh hồng ngoại: nhiều loại tròng kính râm cho ánh sáng hồng ngoại đi qua, nên mắt có thể thấy rõ qua kính, khi đó các điểm mắt là `v = 2`; chỉ khi tròng kính vẫn tối, không thấy mép mí thì mới giữ `v = 1` như ảnh màu. Quy tắc dựa trên việc có nhìn thấy điểm hay không, không dựa trên việc người đó đeo kính râm.
 
 ### B3 — Model so với nhãn của tôi (không tính điểm)
 
@@ -205,4 +205,4 @@ Không làm.
 ## 9. Tài liệu tham khảo và công cụ AI đã dùng
 
 - `docs/GUIDELINE.md`, `docs/CVAT_CHEATSHEET.md`, `docs/COCO_KEYPOINTS.md` của repo lab.
-- Claude Code (trợ lý AI): đọc file xuất và kết quả `src/check_submission.py`, điền các mục số liệu khách quan (mục 0, 1, 2 cột số skeleton, 5, phần số liệu Bonus). Không dùng AI để gán điểm, không dùng cho mục 3, 4, 7.
+- Claude Code (trợ lý AI): đọc file xuất và kết quả `src/check_submission.py`, điền các mục số liệu khách quan (mục 0, 1, 2 cột số skeleton, 5, phần số liệu Bonus), soạn nháp đoạn nhận xét B2, vẽ lại điểm chân để đối chiếu 6 cảnh báo, và tạo ảnh `4_json_export.png` từ JSON xuất thật. Không dùng AI để gán điểm, không dùng cho mục 3, 4, 7.
