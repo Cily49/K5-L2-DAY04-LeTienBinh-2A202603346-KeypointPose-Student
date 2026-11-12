@@ -149,15 +149,15 @@ Nguồn ảnh: COCO 2017.
 
 1. Lỗi bạn mắc nhiều nhất hôm nay, và cách bạn sẽ tránh ở dự án thật:
 
-   ...
+   Lỗi tôi mắc nhiều nhất là `lr_swap`: với người quay lưng, tôi quên đổi chỗ các điểm `left_*` / `right_*` trước khi kéo nên chân bị đổi trái/phải. Ở dự án thật, tôi sẽ xác định hướng người (quay mặt hay quay lưng) trước khi kéo bất kỳ điểm nào.
 
 2. Một quy tắc bạn đề xuất thêm vào guideline (kèm ảnh ví dụ nếu có):
 
-   ...
+   Người ngồi sau bàn, hông bị bàn che: nếu dựa vào vai và ngực ước lượng được vị trí hông thì đặt `v = 1`; nếu không có căn cứ nào để ước lượng thì đặt `v = 0`. Ví dụ `000000150192.jpg`: hông của người ngồi trước (áo caro) là `v = 1`, hông trái của người ngồi phía sau là `v = 0`.
 
 3. Nhãn của bạn đi vào model ở đâu? Chọn một lỗi bạn đã sửa và nói nó sẽ làm model học sai thế nào (heatmap, trọng số trong loss, hay bước lật ảnh):
 
-   ...
+   Lỗi `lr_swap` cổ chân ở `000000188804.jpg` (người quay lưng). Mỗi điểm có `v > 0` sinh ra một đỉnh trên heatmap riêng của điểm đó. Nếu không sửa, đỉnh của heatmap `left_ankle` sẽ nằm ở cổ chân phải thật, nên model bị dạy rằng "cổ chân trái trông như cổ chân phải".
 
 ## 8. Khó khăn và lỗi kỹ thuật
 
